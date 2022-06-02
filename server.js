@@ -22,5 +22,5 @@ app.use(htmlRoutes);
 
 // PORT listening
 app.listen(PORT, function() {
-    console.log('App now listening on PORT: ' + PORT);
+    console.log(`App now listening on PORT: ${PORT} ` + PORT);
 });
