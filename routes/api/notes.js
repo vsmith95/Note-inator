@@ -1,36 +1,62 @@
-const { response } = require('express');
 const fs = require('fs');
-const path = require('path');
 const router = require('express').Router();
 const { v4: uuidv4 } = require('uuid');
 
 
-// get notes
+// call
 router.get('/api/notes', (req, res) => {
     fs.readFile('db/db.json', 'utf8', (err, data) => {
+
         if (err) throw err;
-        response.json(JSON.parse(data));
+
+        res.json(JSON.parse(data));
+
     });
 });
 
-// create note
+// create
 router.post('/api/notes', (req, res) => {
     
     const newNote = {
         title: req.body.title,
-        test: req.body.text,
+        text: req.body.text,
         id: uuidv4()
-    }
+    };
     
     return fs.readFile('db/db.json', 'utf8', (err, data) => {
+
         if (err) throw err;
+
         const notes = JSON.parse(data);
+
         notes.push(newNote);
 
         fs.writeFile('db/db.json', JSON.stringify(notes), () => {
-            response.json(true);
+
+            res.json(true);
+
         });
     });
 });
 
-module.exports = router
+// delete
+router.delete('/api/notes/:id', (req, res) => {
+
+    const id = req.params.id;
+
+    return fs.readFile('db/db.json', 'utf8', (err, data) => {
+
+        if (err) throw err;
+
+        const notes = JSON.parse(data);
+        const deleteNotes = notes.filter(note => id != note.id);
+
+        fs.writeFile('db/db.json', JSON.stringify(deleteNotes), () => {
+
+            res.json(true);
+            
+        });
+    });
+});
+
+module.exports = router;
