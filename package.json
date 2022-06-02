@@ -1,14 +1,25 @@
 {
-  "name": "note-taker",
+  "name": "note-inator",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.1"
-  }
+    "express": "^4.18.1",
+    "uuid": "^8.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vsmith95/Note-inator.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/vsmith95/Note-inator/issues"
+  },
+  "homepage": "https://github.com/vsmith95/Note-inator#readme"
 }
